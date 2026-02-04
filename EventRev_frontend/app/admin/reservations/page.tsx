@@ -97,9 +97,9 @@ export default function AdminReservationsPage() {
 
   if (authLoading || isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-950">
-        <div className="w-10 h-10 border-3 border-violet-200 border-t-violet-600 rounded-full animate-spin"></div>
-        <p className="mt-4 text-neutral-500">Loading reservations...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 dark:bg-stone-950">
+        <div className="w-8 h-8 border-2 border-stone-200 border-t-emerald-600 animate-spin"></div>
+        <p className="mt-4 text-stone-400 text-sm font-light tracking-wide">Loading reservations...</p>
       </div>
     );
   }
@@ -109,119 +109,120 @@ export default function AdminReservationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 py-12 px-4 sm:px-6">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 py-12 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
+              <h1 className="text-xl font-light tracking-wide text-stone-800 dark:text-stone-100 uppercase">
                 Pending Reservations
               </h1>
               {reservations.length > 0 && (
-                <span className="px-3 py-1 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 rounded-full text-sm font-medium">
+                <span className="px-2 py-0.5 bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 text-xs font-light border border-amber-200 dark:border-amber-800">
                   {reservations.length} pending
                 </span>
               )}
             </div>
-            <p className="text-sm text-neutral-500 mt-1">
+            <div className="w-8 h-px bg-emerald-600 mt-2"></div>
+            <p className="text-sm text-stone-500 mt-2 font-light">
               Review and manage reservation requests
             </p>
           </div>
           <button
             onClick={() => router.push('/admin')}
-            className="px-5 py-2.5 bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-xl hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-all font-medium text-sm"
+            className="px-5 py-2.5 bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700 transition-all text-sm font-light tracking-wide"
           >
             Back to Admin
           </button>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-xl flex items-start gap-3">
-            <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/10 border-l-2 border-red-400 text-red-600 dark:text-red-400 flex items-start gap-3 text-sm font-light">
+            <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span>{error}</span>
           </div>
         )}
 
         {successMessage && (
-          <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-600 dark:text-green-400 rounded-xl flex items-start gap-3">
-            <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/10 border-l-2 border-emerald-400 text-emerald-600 dark:text-emerald-400 flex items-start gap-3 text-sm font-light">
+            <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span>{successMessage}</span>
           </div>
         )}
 
         {reservations.length === 0 ? (
-          <div className="text-center py-16 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800">
-            <div className="w-16 h-16 mx-auto bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
-              <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center py-16 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+            <div className="w-14 h-14 mx-auto bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center mb-4">
+              <svg className="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-2">
+            <h3 className="text-sm font-light tracking-wide text-stone-700 dark:text-stone-200 uppercase mb-2">
               All caught up!
             </h3>
-            <p className="text-neutral-500 dark:text-neutral-400">
+            <p className="text-stone-500 dark:text-stone-400 font-light text-sm">
               No pending reservations to review.
             </p>
           </div>
         ) : (
-          <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-            <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-800">
-              <thead className="bg-neutral-50 dark:bg-neutral-800/50">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 overflow-hidden">
+            <table className="min-w-full divide-y divide-stone-200 dark:divide-stone-800">
+              <thead className="bg-stone-50 dark:bg-stone-800/50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-light text-stone-500 dark:text-stone-400 uppercase tracking-wider">
                     User
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-light text-stone-500 dark:text-stone-400 uppercase tracking-wider">
                     Event
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-light text-stone-500 dark:text-stone-400 uppercase tracking-wider">
                     Tickets
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-light text-stone-500 dark:text-stone-400 uppercase tracking-wider">
                     Requested
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-light text-stone-500 dark:text-stone-400 uppercase tracking-wider">
                     Notes
                   </th>
-                  <th className="px-6 py-4 text-right text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-right text-xs font-light text-stone-500 dark:text-stone-400 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
+              <tbody className="divide-y divide-stone-200 dark:divide-stone-800">
                 {reservations.map((reservation) => (
-                  <tr key={reservation.id} className="hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+                  <tr key={reservation.id} className="hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-neutral-900 dark:text-white">
+                      <div className="text-sm text-stone-800 dark:text-stone-100">
                         {reservation.user?.email || `User #${reservation.userId}`}
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="text-sm text-neutral-900 dark:text-white font-medium">
+                      <div className="text-sm text-stone-800 dark:text-stone-100">
                         {reservation.event?.title || `Event #${reservation.eventId}`}
                       </div>
                       {reservation.event && (
-                        <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                        <div className="text-xs text-stone-500 dark:text-stone-400 mt-1 font-light">
                           {formatDate(reservation.event.startDate)}
                         </div>
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="text-sm text-neutral-900 dark:text-white">
+                      <span className="text-sm text-stone-700 dark:text-stone-200 font-light">
                         {reservation.numberOfTickets}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                      <span className="text-sm text-stone-500 dark:text-stone-400 font-light">
                         {formatDate(reservation.createdAt)}
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xs truncate block">
+                      <span className="text-sm text-stone-500 dark:text-stone-400 max-w-xs truncate block font-light">
                         {reservation.notes || '-'}
                       </span>
                     </td>
@@ -230,10 +231,10 @@ export default function AdminReservationsPage() {
                         <button
                           onClick={() => handleConfirm(reservation.id)}
                           disabled={processingId === reservation.id}
-                          className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                          className={`px-4 py-2 text-sm font-light transition-all ${
                             processingId === reservation.id
-                              ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-400 cursor-wait'
-                              : 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50'
+                              ? 'bg-stone-200 dark:bg-stone-700 text-stone-400 cursor-wait'
+                              : 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800'
                           }`}
                         >
                           {processingId === reservation.id ? '...' : 'Confirm'}
@@ -241,10 +242,10 @@ export default function AdminReservationsPage() {
                         <button
                           onClick={() => handleReject(reservation.id)}
                           disabled={processingId === reservation.id}
-                          className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                          className={`px-4 py-2 text-sm font-light transition-all ${
                             processingId === reservation.id
-                              ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-400 cursor-wait'
-                              : 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30'
+                              ? 'bg-stone-200 dark:bg-stone-700 text-stone-400 cursor-wait'
+                              : 'bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/20 border border-red-200 dark:border-red-800'
                           }`}
                         >
                           {processingId === reservation.id ? '...' : 'Reject'}

@@ -148,9 +148,9 @@ export default function EditEventPage() {
 
   if (authLoading || isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-950">
-        <div className="w-10 h-10 border-3 border-violet-200 border-t-violet-600 rounded-full animate-spin"></div>
-        <p className="mt-4 text-neutral-500">Loading event...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 dark:bg-stone-950">
+        <div className="w-8 h-8 border-2 border-stone-200 border-t-emerald-600 animate-spin"></div>
+        <p className="mt-4 text-stone-400 text-sm font-light tracking-wide">Loading event...</p>
       </div>
     );
   }
@@ -161,17 +161,17 @@ export default function EditEventPage() {
 
   if (!event && !isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-950">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 dark:bg-stone-950">
         <div className="text-center">
-          <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          <h2 className="text-sm font-light tracking-wide text-stone-700 dark:text-stone-200 uppercase mb-2">
             Event not found
           </h2>
-          <p className="text-neutral-500 mb-4">
+          <p className="text-stone-500 mb-4 font-light text-sm">
             The event you&apos;re looking for doesn&apos;t exist.
           </p>
           <Link
             href="/admin/events"
-            className="text-violet-600 hover:text-violet-700 font-medium"
+            className="text-emerald-600 hover:text-emerald-700 font-light"
           >
             Back to Events
           </Link>
@@ -181,32 +181,33 @@ export default function EditEventPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 py-12 px-4 sm:px-6">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 py-12 px-4 sm:px-6">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
           <Link
             href="/admin/events"
-            className="p-2 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-xl transition-colors"
+            className="p-2 hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors"
           >
-            <svg className="w-5 h-5 text-neutral-600 dark:text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg className="w-5 h-5 text-stone-600 dark:text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
             </svg>
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
+            <h1 className="text-xl font-light tracking-wide text-stone-800 dark:text-stone-100 uppercase">
               Edit Event
             </h1>
-            <p className="text-sm text-neutral-500 mt-1">
+            <div className="w-8 h-px bg-emerald-600 mt-2"></div>
+            <p className="text-sm text-stone-500 mt-2 font-light">
               Update the event details
             </p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-6">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-xl flex items-start gap-3">
-              <svg className="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/10 border-l-2 border-red-400 text-red-600 dark:text-red-400 flex items-start gap-3 text-sm font-light">
+              <svg className="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span>{error}</span>
             </div>
@@ -214,7 +215,7 @@ export default function EditEventPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label htmlFor="title" className="block text-xs font-light text-stone-600 dark:text-stone-400 mb-2 uppercase tracking-wide">
                 Event Title <span className="text-red-500">*</span>
               </label>
               <input
@@ -225,12 +226,12 @@ export default function EditEventPage() {
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="Enter event title"
-                className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 placeholder-neutral-400 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-stone-200 dark:border-stone-700 placeholder-stone-400 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-600 transition-all font-light"
               />
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label htmlFor="description" className="block text-xs font-light text-stone-600 dark:text-stone-400 mb-2 uppercase tracking-wide">
                 Description
               </label>
               <textarea
@@ -240,13 +241,13 @@ export default function EditEventPage() {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Describe your event..."
-                className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 placeholder-neutral-400 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
+                className="w-full px-4 py-3 border border-stone-200 dark:border-stone-700 placeholder-stone-400 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-600 transition-all resize-none font-light"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="startDate" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                <label htmlFor="startDate" className="block text-xs font-light text-stone-600 dark:text-stone-400 mb-2 uppercase tracking-wide">
                   Start Date & Time <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -256,12 +257,12 @@ export default function EditEventPage() {
                   required
                   value={formData.startDate}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-600 transition-all font-light"
                 />
               </div>
 
               <div>
-                <label htmlFor="endDate" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                <label htmlFor="endDate" className="block text-xs font-light text-stone-600 dark:text-stone-400 mb-2 uppercase tracking-wide">
                   End Date & Time
                 </label>
                 <input
@@ -270,13 +271,13 @@ export default function EditEventPage() {
                   type="datetime-local"
                   value={formData.endDate}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-600 transition-all font-light"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="location" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label htmlFor="location" className="block text-xs font-light text-stone-600 dark:text-stone-400 mb-2 uppercase tracking-wide">
                 Location
               </label>
               <input
@@ -286,12 +287,12 @@ export default function EditEventPage() {
                 value={formData.location}
                 onChange={handleChange}
                 placeholder="Event venue or address"
-                className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 placeholder-neutral-400 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-stone-200 dark:border-stone-700 placeholder-stone-400 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-600 transition-all font-light"
               />
             </div>
 
             <div>
-              <label htmlFor="categoryId" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label htmlFor="categoryId" className="block text-xs font-light text-stone-600 dark:text-stone-400 mb-2 uppercase tracking-wide">
                 Category
               </label>
               <select
@@ -300,7 +301,7 @@ export default function EditEventPage() {
                 value={formData.categoryId}
                 onChange={handleChange}
                 disabled={isLoadingCategories}
-                className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-600 transition-all font-light"
               >
                 <option value="">Select a category</option>
                 {categories.map((category) => (
@@ -310,12 +311,12 @@ export default function EditEventPage() {
                 ))}
               </select>
               {isLoadingCategories && (
-                <p className="mt-1 text-xs text-neutral-500">Loading categories...</p>
+                <p className="mt-1 text-xs text-stone-500 font-light">Loading categories...</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="capacity" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label htmlFor="capacity" className="block text-xs font-light text-stone-600 dark:text-stone-400 mb-2 uppercase tracking-wide">
                 Capacity
               </label>
               <input
@@ -326,9 +327,9 @@ export default function EditEventPage() {
                 value={formData.capacity}
                 onChange={handleChange}
                 placeholder="Leave empty for unlimited"
-                className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 placeholder-neutral-400 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-stone-200 dark:border-stone-700 placeholder-stone-400 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-600 transition-all font-light"
               />
-              <p className="mt-1 text-xs text-neutral-500">
+              <p className="mt-1 text-xs text-stone-500 font-light">
                 Maximum number of attendees. Leave empty for unlimited spots.
               </p>
             </div>
@@ -336,14 +337,14 @@ export default function EditEventPage() {
             <div className="flex gap-3 pt-4">
               <Link
                 href="/admin/events"
-                className="flex-1 py-3 px-4 text-center text-sm font-medium rounded-xl text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all"
+                className="flex-1 py-3 px-4 text-center text-sm font-light tracking-wide text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 transition-all border border-stone-200 dark:border-stone-700"
               >
                 Cancel
               </Link>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 py-3 px-4 text-sm font-medium rounded-xl text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98]"
+                className="flex-1 py-3 px-4 text-sm font-light tracking-wide text-white bg-emerald-700 hover:bg-emerald-800 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98]"
               >
                 {isSubmitting ? 'Saving...' : 'Save Changes'}
               </button>

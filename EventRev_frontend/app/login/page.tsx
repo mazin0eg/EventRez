@@ -34,19 +34,20 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-950 py-12 px-4 sm:px-6">
-      <div className="max-w-md w-full">
-        <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-8">
+    <div className="min-h-screen flex items-center justify-center bg-stone-50 dark:bg-stone-950 py-12 px-4 sm:px-6">
+      <div className="max-w-sm w-full">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-8">
           <div className="text-center mb-8">
-            <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-white font-bold text-xl">E</span>
+            <div className="w-10 h-10 bg-emerald-700 dark:bg-emerald-600 flex items-center justify-center mx-auto mb-6">
+              <span className="text-white font-light text-sm tracking-widest">禅</span>
             </div>
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
+            <h2 className="text-xl font-light tracking-wide text-stone-800 dark:text-stone-100">
               Welcome back
             </h2>
-            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <div className="w-8 h-px bg-emerald-600 mx-auto mt-3"></div>
+            <p className="mt-4 text-sm text-stone-500 dark:text-stone-400 font-light">
               Don&apos;t have an account?{' '}
-              <Link href="/register" className="font-medium text-violet-600 hover:text-violet-700">
+              <Link href="/register" className="text-emerald-700 dark:text-emerald-500 hover:text-emerald-800">
                 Sign up
               </Link>
             </p>
@@ -54,16 +55,16 @@ export default function LoginPage() {
           
           <form className="space-y-5" onSubmit={handleSubmit}>
             {error && (
-              <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-xl text-sm flex items-center gap-2">
-                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <div className="p-3 bg-red-50 dark:bg-red-900/10 border-l-2 border-red-400 text-red-600 dark:text-red-400 text-sm font-light flex items-center gap-2">
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 {error}
               </div>
             )}
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label htmlFor="email" className="block text-xs font-light tracking-wide text-stone-600 dark:text-stone-400 mb-2 uppercase">
                 Email
               </label>
               <input
@@ -74,13 +75,13 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 placeholder-neutral-400 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                className="w-full px-3 py-2.5 border border-stone-200 dark:border-stone-700 placeholder-stone-400 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-500 transition-colors text-sm font-light"
                 placeholder="you@example.com"
               />
             </div>
             
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label htmlFor="password" className="block text-xs font-light tracking-wide text-stone-600 dark:text-stone-400 mb-2 uppercase">
                 Password
               </label>
               <input
@@ -91,7 +92,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 placeholder-neutral-400 text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                className="w-full px-3 py-2.5 border border-stone-200 dark:border-stone-700 placeholder-stone-400 text-stone-800 dark:text-stone-100 bg-stone-50 dark:bg-stone-800 focus:outline-none focus:border-emerald-500 transition-colors text-sm font-light"
                 placeholder="Enter your password"
               />
             </div>
@@ -99,7 +100,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 text-sm font-medium rounded-xl text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98]"
+              className="w-full py-2.5 px-4 text-sm font-light tracking-wide text-white bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {isLoading ? 'Signing in...' : 'Sign in'}
             </button>

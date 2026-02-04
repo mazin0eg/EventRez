@@ -16,9 +16,9 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-950">
-        <div className="w-10 h-10 border-3 border-violet-200 border-t-violet-600 rounded-full animate-spin"></div>
-        <p className="mt-4 text-neutral-500">Loading dashboard...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 dark:bg-stone-950">
+        <div className="w-8 h-8 border-2 border-stone-200 border-t-emerald-600 animate-spin"></div>
+        <p className="mt-4 text-stone-400 text-sm font-light tracking-wide">Loading dashboard...</p>
       </div>
     );
   }
@@ -28,52 +28,55 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 py-12 px-4 sm:px-6">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 py-12 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-white mb-8">
-          Dashboard
-        </h1>
+        <div className="mb-10">
+          <h1 className="text-xl font-light tracking-wide text-stone-800 dark:text-stone-100 uppercase">
+            Dashboard
+          </h1>
+          <div className="w-8 h-px bg-emerald-600 mt-2"></div>
+        </div>
         
-        <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-6 mb-6">
+          <h2 className="text-sm font-light tracking-wide text-stone-600 dark:text-stone-400 uppercase mb-4">
             User Profile
           </h2>
           <div className="space-y-3">
             <div className="flex items-center">
-              <span className="text-neutral-500 dark:text-neutral-400 w-24">Email:</span>
-              <span className="text-neutral-900 dark:text-white font-medium">{user?.email}</span>
+              <span className="text-stone-500 dark:text-stone-400 w-24 text-sm font-light">Email:</span>
+              <span className="text-stone-800 dark:text-stone-100 text-sm">{user?.email}</span>
             </div>
             <div className="flex items-center">
-              <span className="text-neutral-500 dark:text-neutral-400 w-24">Role:</span>
-              <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${
+              <span className="text-stone-500 dark:text-stone-400 w-24 text-sm font-light">Role:</span>
+              <span className={`px-2 py-0.5 text-xs font-light tracking-wide ${
                 user?.role === 'admin' 
-                  ? 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400' 
-                  : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                  ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800' 
+                  : 'bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400 border border-stone-200 dark:border-stone-700'
               }`}>
                 {user?.role}
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-neutral-500 dark:text-neutral-400 w-24">User ID:</span>
-              <span className="text-neutral-900 dark:text-white font-mono text-sm">{user?.id}</span>
+              <span className="text-stone-500 dark:text-stone-400 w-24 text-sm font-light">User ID:</span>
+              <span className="text-stone-800 dark:text-stone-100 font-mono text-sm">{user?.id}</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+        <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-6">
+          <h2 className="text-sm font-light tracking-wide text-stone-600 dark:text-stone-400 uppercase mb-4">
             Quick Actions
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-xl border border-neutral-100 dark:border-neutral-700">
-              <h3 className="font-medium text-neutral-900 dark:text-white">Profile Settings</h3>
-              <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            <div className="p-4 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
+              <h3 className="text-sm text-stone-800 dark:text-stone-100">Profile Settings</h3>
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 font-light">
                 Update your profile information
               </p>
             </div>
-            <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-xl border border-neutral-100 dark:border-neutral-700">
-              <h3 className="font-medium text-neutral-900 dark:text-white">Security</h3>
-              <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            <div className="p-4 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
+              <h3 className="text-sm text-stone-800 dark:text-stone-100">Security</h3>
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 font-light">
                 Manage your password and security
               </p>
             </div>

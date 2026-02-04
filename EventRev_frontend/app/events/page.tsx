@@ -96,8 +96,9 @@ export default function EventsPage() {
 
   if (authLoading || isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 dark:bg-stone-950">
+        <div className="w-8 h-8 border-2 border-stone-200 border-t-emerald-600 animate-spin"></div>
+        <p className="mt-4 text-stone-400 text-sm font-light tracking-wide">Loading events...</p>
       </div>
     );
   }
@@ -107,16 +108,19 @@ export default function EventsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 py-12 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">
-            Upcoming Events
-          </h1>
+        <div className="flex justify-between items-center mb-10">
+          <div>
+            <h1 className="text-xl font-light tracking-wide text-stone-800 dark:text-stone-100 uppercase">
+              Upcoming Events
+            </h1>
+            <div className="w-8 h-px bg-emerald-600 mt-2"></div>
+          </div>
           {user?.role === 'user' && (
             <button
               onClick={() => router.push('/my-reservations')}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-emerald-700 text-white text-sm font-light tracking-wide hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 transition-colors"
             >
               My Reservations
             </button>
@@ -124,20 +128,20 @@ export default function EventsPage() {
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-800 text-red-700 dark:text-red-400 rounded-lg">
+          <div className="mb-8 p-4 bg-red-50 dark:bg-red-900/10 border-l-2 border-red-400 text-red-600 dark:text-red-400 text-sm font-light">
             {error}
           </div>
         )}
 
         {successMessage && (
-          <div className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 border border-green-400 dark:border-green-800 text-green-700 dark:text-green-400 rounded-lg">
+          <div className="mb-8 p-4 bg-emerald-50 dark:bg-emerald-900/10 border-l-2 border-emerald-500 text-emerald-700 dark:text-emerald-400 text-sm font-light">
             {successMessage}
           </div>
         )}
 
         {events.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-zinc-500 dark:text-zinc-400 text-lg">
+          <div className="text-center py-20 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+            <p className="text-stone-500 dark:text-stone-400 font-light">
               No events available at the moment.
             </p>
           </div>
@@ -151,71 +155,71 @@ export default function EventsPage() {
               return (
                 <div
                   key={event.id}
-                  className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-hidden"
+                  className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-700 transition-colors"
                 >
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">
+                  <div className="p-5">
+                    <div className="flex justify-between items-start mb-3">
+                      <h2 className="text-base font-normal tracking-wide text-stone-800 dark:text-stone-100">
                         {event.title}
                       </h2>
                       {event.category && (
-                        <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 text-xs rounded-full">
+                        <span className="px-2 py-0.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 text-xs font-light tracking-wide border border-emerald-200 dark:border-emerald-800">
                           {event.category.name}
                         </span>
                       )}
                     </div>
 
                     {event.description && (
-                      <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4 line-clamp-2">
+                      <p className="text-stone-500 dark:text-stone-400 text-sm font-light mb-4 line-clamp-2 leading-relaxed">
                         {event.description}
                       </p>
                     )}
 
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center text-zinc-500 dark:text-zinc-400">
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <div className="space-y-2 text-xs font-light">
+                      <div className="flex items-center text-stone-500 dark:text-stone-400">
+                        <svg className="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                         {formatDate(event.startDate)}
                       </div>
 
                       {event.location && (
-                        <div className="flex items-center text-zinc-500 dark:text-zinc-400">
-                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <div className="flex items-center text-stone-500 dark:text-stone-400">
+                          <svg className="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
                           {event.location}
                         </div>
                       )}
 
                       {eventAvailability && (
-                        <div className="flex items-center text-zinc-500 dark:text-zinc-400">
-                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <div className="flex items-center text-stone-500 dark:text-stone-400">
+                          <svg className="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
                           {eventAvailability.available !== null ? (
                             <span className={isSoldOut ? 'text-red-500' : ''}>
-                              {eventAvailability.available} / {eventAvailability.capacity} spots available
+                              {eventAvailability.available} / {eventAvailability.capacity} spots
                             </span>
                           ) : (
-                            'Unlimited spots'
+                            'Open seating'
                           )}
                         </div>
                       )}
                     </div>
 
-                    <div className="mt-6">
+                    <div className="mt-5 pt-4 border-t border-stone-100 dark:border-stone-800">
                       {user?.role === 'user' && (
                         <button
                           onClick={() => handleReserve(event.id)}
                           disabled={isPast || isSoldOut || reservingEventId === event.id}
-                          className={`w-full py-2 px-4 rounded-lg font-medium transition-colors ${
+                          className={`w-full py-2.5 px-4 font-light text-sm tracking-wide transition-colors ${
                             isPast || isSoldOut
-                              ? 'bg-zinc-300 dark:bg-zinc-700 text-zinc-500 dark:text-zinc-400 cursor-not-allowed'
+                              ? 'bg-stone-100 dark:bg-stone-800 text-stone-400 cursor-not-allowed'
                               : reservingEventId === event.id
-                              ? 'bg-blue-400 text-white cursor-wait'
-                              : 'bg-blue-600 text-white hover:bg-blue-700'
+                              ? 'bg-emerald-500 text-white cursor-wait'
+                              : 'bg-emerald-700 text-white hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700'
                           }`}
                         >
                           {reservingEventId === event.id
