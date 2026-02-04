@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsDateString, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsDateString, IsNumber, IsInt, IsPositive } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateEventDto {
@@ -57,4 +57,20 @@ export class CreateEventDto {
   @IsNumber()
   @IsOptional()
   categoryId?: number;
+
+  @ApiPropertyOptional({
+    description: 'Maximum number of attendees for the event',
+    example: 100,
+  })
+  @IsInt()
+  @IsPositive()
+  @IsOptional()
+  capacity?: number;
+
+  @ApiPropertyOptional({
+    description: 'Whether the event is published and visible to users',
+    example: false,
+  })
+  @IsOptional()
+  isPublished?: boolean;
 }

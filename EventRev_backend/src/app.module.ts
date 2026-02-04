@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { EventModule } from './event/event.module';
 import { CategoryModule } from './category/category.module';
+import { ReservationModule } from './reservation/reservation.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { CategoryModule } from './category/category.module';
     AuthModule,
     EventModule,
     CategoryModule,
+    ReservationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

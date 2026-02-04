@@ -28,10 +28,17 @@ export class EventController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all events' })
+  @ApiOperation({ summary: 'Get all events (Admin sees all, public sees published only)' })
   @ApiResponse({ status: 200, description: 'List of all events.' })
   async findAll(): Promise<Event[]> {
     return this.eventService.findAll();
+  }
+
+  @Get('published')
+  @ApiOperation({ summary: 'Get all published events (Public)' })
+  @ApiResponse({ status: 200, description: 'List of published events.' })
+  async findPublished(): Promise<Event[]> {
+    return this.eventService.findPublished();
   }
 
   @Get(':id')
@@ -72,5 +79,19 @@ export class EventController {
   @ApiResponse({ status: 404, description: 'Event not found.' })
   async remove(@Param('id', ParseIntPipe) id: number): Promise<{ message: string }> {
     return this.eventService.remove(id);
+  }
+
+  @Patch(':id/publish')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.Admin)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Toggle publish status of an event (Admin only)' })
+  @ApiParam({ name: 'id', description: 'Event ID', example: 1 })
+  @ApiResponse({ status: 200, description: 'The event publish status has been toggled.' })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 403, description: 'Forbidden - Admin access required.' })
+  @ApiResponse({ status: 404, description: 'Event not found.' })
+  async togglePublish(@Param('id', ParseIntPipe) id: number): Promise<Event> {
+    return this.eventService.togglePublish(id);
   }
 }

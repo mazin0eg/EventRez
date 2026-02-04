@@ -19,6 +19,8 @@ export class EventService {
       location: createEventDto.location,
       organizerId: createEventDto.organizerId,
       categoryId: createEventDto.categoryId,
+      capacity: createEventDto.capacity,
+      isPublished: createEventDto.isPublished ?? false,
       startDate: new Date(createEventDto.startDate),
       endDate: createEventDto.endDate ? new Date(createEventDto.endDate) : undefined,
     });
@@ -30,6 +32,20 @@ export class EventService {
       relations: ['organizer', 'category'],
       order: { startDate: 'ASC' },
     });
+  }
+
+  async findPublished(): Promise<Event[]> {
+    return this.eventRepository.find({
+      where: { isPublished: true },
+      relations: ['organizer', 'category'],
+      order: { startDate: 'ASC' },
+    });
+  }
+
+  async togglePublish(id: number): Promise<Event> {
+    const event = await this.findOne(id);
+    event.isPublished = !event.isPublished;
+    return this.eventRepository.save(event);
   }
 
   async findOne(id: number): Promise<Event> {
@@ -60,6 +76,12 @@ export class EventService {
     }
     if (updateEventDto.categoryId !== undefined) {
       event.categoryId = updateEventDto.categoryId;
+    }
+    if (updateEventDto.capacity !== undefined) {
+      event.capacity = updateEventDto.capacity;
+    }
+    if (updateEventDto.isPublished !== undefined) {
+      event.isPublished = updateEventDto.isPublished;
     }
     if (updateEventDto.startDate) {
       event.startDate = new Date(updateEventDto.startDate);
