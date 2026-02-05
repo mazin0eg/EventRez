@@ -154,7 +154,7 @@
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/votre-username/EventRez.git
+git clone https://github.com/mazin0eg/EventRez.git
 cd EventRez
 ```
 
@@ -419,10 +419,9 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## 👤 Auteur
 
-**Votre Nom**
+**mazin0eg**
 
-- GitHub: [@votre-username](https://github.com/votre-username)
-- LinkedIn: [Votre Profil](https://linkedin.com/in/votre-profil)
+- GitHub: [@mazin0eg](https://github.com/mazin0eg)
 
 ---
 
