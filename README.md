@@ -150,15 +150,47 @@
 - **npm** >= 9.0
 - **PostgreSQL** >= 15
 - **Git**
+- **Docker** (optionnel) >= 20.0
 
-### 1. Cloner le projet
+### 🐳 Option 1: Installation avec Docker (Recommandé)
+
+```bash
+# Cloner le projet
+git clone https://github.com/mazin0eg/EventRez.git
+cd EventRez
+
+# Copier le fichier d'environnement
+cp .env.example .env
+# Éditer .env avec vos paramètres
+
+# Lancer tous les services
+docker-compose up -d
+
+# Voir les logs
+docker-compose logs -f
+
+# Arrêter les services
+docker-compose down
+```
+
+**Services disponibles après démarrage :**
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:3001 |
+| Backend API | http://localhost:3000 |
+| Swagger Docs | http://localhost:3000/api |
+| PostgreSQL | localhost:5432 |
+
+### Option 2: Installation Manuelle
+
+#### 1. Cloner le projet
 
 ```bash
 git clone https://github.com/mazin0eg/EventRez.git
 cd EventRez
 ```
 
-### 2. Backend Setup
+##### 2. Backend Setup
 
 ```bash
 # Aller dans le dossier backend
@@ -175,7 +207,7 @@ cp .env.example .env
 npm run start:dev
 ```
 
-### 3. Frontend Setup
+#### 3. Frontend Setup
 
 ```bash
 # Aller dans le dossier frontend
@@ -376,7 +408,44 @@ npm run build
 
 ## 🚢 Déploiement
 
-### Production Build
+### 🐳 Déploiement avec Docker (Recommandé)
+
+```bash
+# Build et lancement en production
+docker-compose up -d --build
+
+# Voir le statut des conteneurs
+docker-compose ps
+
+# Voir les logs
+docker-compose logs -f
+
+# Arrêter les services
+docker-compose down
+
+# Arrêter et supprimer les volumes (reset DB)
+docker-compose down -v
+```
+
+### Commandes Docker utiles
+
+```bash
+# Reconstruire un service spécifique
+docker-compose build backend
+docker-compose build frontend
+
+# Redémarrer un service
+docker-compose restart backend
+
+# Accéder au shell d'un conteneur
+docker-compose exec backend sh
+docker-compose exec postgres psql -U postgres -d eventrez
+
+# Voir les logs d'un service
+docker-compose logs -f backend
+```
+
+### Production Build (sans Docker)
 
 ```bash
 # Backend
