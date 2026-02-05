@@ -45,7 +45,10 @@ export class ReservationService {
       where: { userId, eventId },
     });
 
-    if (existingReservation) {
+    if (existingReservation && (existingReservation.status === ReservationStatus.Pending
+       || existingReservation.status === ReservationStatus.Confirmed
+    )
+  ) {
       throw new ConflictException('You already have a reservation for this event');
     }
 
@@ -62,15 +65,22 @@ export class ReservationService {
     }
 
     // Create reservation with pending status (requires admin confirmation)
-    const reservation = this.reservationRepository.create({
-      userId,
-      eventId,
-      numberOfTickets,
-      notes,
-      status: ReservationStatus.Pending,
-    });
+    if (!existingReservation){
+      const reservation = this.reservationRepository.create({
+        userId,
+        eventId,
+        numberOfTickets,
+        notes,
+        status: ReservationStatus.Pending,
+      });
 
-    return this.reservationRepository.save(reservation);
+      return this.reservationRepository.save(reservation);
+    }
+    existingReservation.numberOfTickets = numberOfTickets;
+    existingReservation.status = ReservationStatus.Pending;
+
+    return this.reservationRepository.save(existingReservation);
+
   }
 
   async findAllByUser(userId: number): Promise<Reservation[]> {
