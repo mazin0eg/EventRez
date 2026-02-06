@@ -1,4 +1,8 @@
-import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
@@ -8,7 +12,11 @@ import { Role } from '../auth/enums/role.enum';
 export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>) {}
 
-  async create(email: string, passwordHash: string, role: Role = Role.User): Promise<User> {
+  async create(
+    email: string,
+    passwordHash: string,
+    role: Role = Role.User,
+  ): Promise<User> {
     const existing = await this.repo.findOne({ where: { email } });
     if (existing) throw new ConflictException('Email is already registered');
     const user = this.repo.create({ email, password: passwordHash, role });

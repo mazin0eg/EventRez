@@ -45,11 +45,14 @@ export class ReservationService {
       where: { userId, eventId },
     });
 
-    if (existingReservation && (existingReservation.status === ReservationStatus.Pending
-       || existingReservation.status === ReservationStatus.Confirmed
-    )
-  ) {
-      throw new ConflictException('You already have a reservation for this event');
+    if (
+      existingReservation &&
+      (existingReservation.status === ReservationStatus.Pending ||
+        existingReservation.status === ReservationStatus.Confirmed)
+    ) {
+      throw new ConflictException(
+        'You already have a reservation for this event',
+      );
     }
 
     // Check event capacity if it exists
@@ -65,7 +68,7 @@ export class ReservationService {
     }
 
     // Create reservation with pending status (requires admin confirmation)
-    if (!existingReservation){
+    if (!existingReservation) {
       const reservation = this.reservationRepository.create({
         userId,
         eventId,
@@ -80,7 +83,6 @@ export class ReservationService {
     existingReservation.status = ReservationStatus.Pending;
 
     return this.reservationRepository.save(existingReservation);
-
   }
 
   async findAllByUser(userId: number): Promise<Reservation[]> {
@@ -167,7 +169,7 @@ export class ReservationService {
       .andWhere('reservation.status = :status', {
         status: ReservationStatus.Confirmed,
       })
-      .getRawOne();
+      .getRawOne<{ total: string | null }>();
 
     return parseInt(result?.total || '0', 10);
   }
@@ -220,7 +222,8 @@ export class ReservationService {
       if (event.capacity !== null && event.capacity !== undefined) {
         const totalReserved = await this.getTotalReservedTickets(event.id);
         const currentTickets = reservation.numberOfTickets;
-        const additionalTickets = updateReservationDto.numberOfTickets - currentTickets;
+        const additionalTickets =
+          updateReservationDto.numberOfTickets - currentTickets;
         const availableSpots = event.capacity - totalReserved;
 
         if (additionalTickets > availableSpots) {
@@ -304,7 +307,7 @@ export class ReservationService {
       .andWhere('reservation.status != :status', {
         status: ReservationStatus.Cancelled,
       })
-      .getRawOne();
+      .getRawOne<{ total: string | null }>();
 
     return parseInt(result?.total || '0', 10);
   }

@@ -29,9 +29,9 @@ const DataTable = async ({url, errorMessage} : DataTableProps) => {
  
         <tbody className="divide-y divide-stone-200 dark:divide-stone-800">
             {
-                data.map((item:any) => {
-                    return <tr className="hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">{keys.map((key)=> {
-                        return <th className="px-6 py-4 whitespace-nowrap">{item?.[key] || '777'}</th>
+                data.map((item: Record<string, unknown>, index: number) => {
+                    return <tr key={index} className="hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">{keys.map((key)=> {
+                        return <th key={key} className="px-6 py-4 whitespace-nowrap">{String(item?.[key] ?? '777')}</th>
                     } )}</tr>
                 })
             }

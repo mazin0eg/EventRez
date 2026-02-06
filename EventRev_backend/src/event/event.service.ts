@@ -22,7 +22,9 @@ export class EventService {
       capacity: createEventDto.capacity,
       isPublished: createEventDto.isPublished ?? false,
       startDate: new Date(createEventDto.startDate),
-      endDate: createEventDto.endDate ? new Date(createEventDto.endDate) : undefined,
+      endDate: createEventDto.endDate
+        ? new Date(createEventDto.endDate)
+        : undefined,
     });
     return this.eventRepository.save(event);
   }
@@ -61,7 +63,7 @@ export class EventService {
 
   async update(id: number, updateEventDto: UpdateEventDto): Promise<Event> {
     const event = await this.findOne(id);
-    
+
     if (updateEventDto.title !== undefined) {
       event.title = updateEventDto.title;
     }
@@ -89,7 +91,7 @@ export class EventService {
     if (updateEventDto.endDate) {
       event.endDate = new Date(updateEventDto.endDate);
     }
-    
+
     return this.eventRepository.save(event);
   }
 

@@ -1,4 +1,11 @@
-import { IsEnum, IsInt, IsOptional, IsPositive, IsString, Min } from 'class-validator';
+import {
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsPositive,
+  IsString,
+  Min,
+} from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { ReservationStatus } from '../entities/reservation.entity';
 

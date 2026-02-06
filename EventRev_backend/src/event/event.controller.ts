@@ -1,5 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
@@ -19,16 +35,24 @@ export class EventController {
   @Roles(Role.Admin)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new event (Admin only)' })
-  @ApiResponse({ status: 201, description: 'The event has been successfully created.' })
+  @ApiResponse({
+    status: 201,
+    description: 'The event has been successfully created.',
+  })
   @ApiResponse({ status: 400, description: 'Invalid input data.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Admin access required.' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Admin access required.',
+  })
   async create(@Body() createEventDto: CreateEventDto): Promise<Event> {
     return this.eventService.create(createEventDto);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all events (Admin sees all, public sees published only)' })
+  @ApiOperation({
+    summary: 'Get all events (Admin sees all, public sees published only)',
+  })
   @ApiResponse({ status: 200, description: 'List of all events.' })
   async findAll(): Promise<Event[]> {
     return this.eventService.findAll();
@@ -56,9 +80,15 @@ export class EventController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Update an event (Admin only)' })
   @ApiParam({ name: 'id', description: 'Event ID', example: 1 })
-  @ApiResponse({ status: 200, description: 'The event has been successfully updated.' })
+  @ApiResponse({
+    status: 200,
+    description: 'The event has been successfully updated.',
+  })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Admin access required.' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Admin access required.',
+  })
   @ApiResponse({ status: 404, description: 'Event not found.' })
   async update(
     @Param('id', ParseIntPipe) id: number,
@@ -73,11 +103,19 @@ export class EventController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Delete an event (Admin only)' })
   @ApiParam({ name: 'id', description: 'Event ID', example: 1 })
-  @ApiResponse({ status: 200, description: 'The event has been successfully deleted.' })
+  @ApiResponse({
+    status: 200,
+    description: 'The event has been successfully deleted.',
+  })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Admin access required.' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Admin access required.',
+  })
   @ApiResponse({ status: 404, description: 'Event not found.' })
-  async remove(@Param('id', ParseIntPipe) id: number): Promise<{ message: string }> {
+  async remove(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<{ message: string }> {
     return this.eventService.remove(id);
   }
 
@@ -87,9 +125,15 @@ export class EventController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Toggle publish status of an event (Admin only)' })
   @ApiParam({ name: 'id', description: 'Event ID', example: 1 })
-  @ApiResponse({ status: 200, description: 'The event publish status has been toggled.' })
+  @ApiResponse({
+    status: 200,
+    description: 'The event publish status has been toggled.',
+  })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Admin access required.' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Admin access required.',
+  })
   @ApiResponse({ status: 404, description: 'Event not found.' })
   async togglePublish(@Param('id', ParseIntPipe) id: number): Promise<Event> {
     return this.eventService.togglePublish(id);

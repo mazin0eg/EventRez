@@ -47,7 +47,8 @@ export class ReservationController {
   @Roles(Role.User)
   @ApiOperation({
     summary: 'Create a new reservation',
-    description: 'Allows a user to reserve tickets for an event. The reservation starts with "pending" status and must be confirmed by an admin. Users can only create one reservation per event.',
+    description:
+      'Allows a user to reserve tickets for an event. The reservation starts with "pending" status and must be confirmed by an admin. Users can only create one reservation per event.',
   })
   @ApiBody({
     type: CreateReservationDto,
@@ -73,7 +74,8 @@ export class ReservationController {
   })
   @ApiResponse({
     status: 201,
-    description: 'Reservation created successfully (pending admin confirmation)',
+    description:
+      'Reservation created successfully (pending admin confirmation)',
     schema: {
       example: {
         id: 1,
@@ -87,23 +89,36 @@ export class ReservationController {
       },
     },
   })
-  @ApiResponse({ status: 400, description: 'Bad request - Event is in the past or not enough capacity' })
-  @ApiResponse({ status: 401, description: 'Unauthorized - JWT token missing or invalid' })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request - Event is in the past or not enough capacity',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - JWT token missing or invalid',
+  })
   @ApiResponse({ status: 403, description: 'Forbidden - User role required' })
   @ApiResponse({ status: 404, description: 'Event not found' })
-  @ApiResponse({ status: 409, description: 'Conflict - User already has a reservation for this event' })
+  @ApiResponse({
+    status: 409,
+    description: 'Conflict - User already has a reservation for this event',
+  })
   create(
     @Request() req: AuthenticatedRequest,
     @Body() createReservationDto: CreateReservationDto,
   ) {
-    return this.reservationService.create(req.user.userId, createReservationDto);
+    return this.reservationService.create(
+      req.user.userId,
+      createReservationDto,
+    );
   }
 
   @Get('my-reservations')
   @Roles(Role.User)
   @ApiOperation({
     summary: 'Get all my reservations',
-    description: 'Retrieves all reservations made by the currently authenticated user',
+    description:
+      'Retrieves all reservations made by the currently authenticated user',
   })
   @ApiResponse({
     status: 200,
@@ -142,7 +157,8 @@ export class ReservationController {
   @Roles(Role.Admin)
   @ApiOperation({
     summary: 'Get all reservations for an event (Admin only)',
-    description: 'Retrieves all reservations for a specific event. Only accessible by admins.',
+    description:
+      'Retrieves all reservations for a specific event. Only accessible by admins.',
   })
   @ApiParam({
     name: 'eventId',
@@ -180,7 +196,8 @@ export class ReservationController {
   @Roles(Role.Admin)
   @ApiOperation({
     summary: 'Get all pending reservations (Admin only)',
-    description: 'Retrieves all reservations awaiting confirmation. Only accessible by admins.',
+    description:
+      'Retrieves all reservations awaiting confirmation. Only accessible by admins.',
   })
   @ApiResponse({
     status: 200,
@@ -219,7 +236,8 @@ export class ReservationController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary: 'Confirm a reservation (Admin only)',
-    description: 'Confirms a pending reservation. Only accessible by admins. Validates capacity before confirming.',
+    description:
+      'Confirms a pending reservation. Only accessible by admins. Validates capacity before confirming.',
   })
   @ApiParam({
     name: 'id',
@@ -242,7 +260,11 @@ export class ReservationController {
       },
     },
   })
-  @ApiResponse({ status: 400, description: 'Bad request - Already confirmed, cancelled, or not enough capacity' })
+  @ApiResponse({
+    status: 400,
+    description:
+      'Bad request - Already confirmed, cancelled, or not enough capacity',
+  })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   @ApiResponse({ status: 403, description: 'Forbidden - Admin role required' })
   @ApiResponse({ status: 404, description: 'Reservation not found' })
@@ -289,7 +311,8 @@ export class ReservationController {
   @Get('availability/:eventId')
   @ApiOperation({
     summary: 'Check event availability',
-    description: 'Returns the capacity, reserved tickets, and available spots for an event',
+    description:
+      'Returns the capacity, reserved tickets, and available spots for an event',
   })
   @ApiParam({
     name: 'eventId',
@@ -316,7 +339,8 @@ export class ReservationController {
   @Roles(Role.User)
   @ApiOperation({
     summary: 'Get a specific reservation',
-    description: 'Retrieves details of a specific reservation. Users can only view their own reservations.',
+    description:
+      'Retrieves details of a specific reservation. Users can only view their own reservations.',
   })
   @ApiParam({
     name: 'id',
@@ -345,7 +369,10 @@ export class ReservationController {
       },
     },
   })
-  @ApiResponse({ status: 403, description: 'Forbidden - Can only view own reservations' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Can only view own reservations',
+  })
   @ApiResponse({ status: 404, description: 'Reservation not found' })
   findOne(
     @Param('id', ParseIntPipe) id: number,
@@ -358,7 +385,8 @@ export class ReservationController {
   @Roles(Role.User)
   @ApiOperation({
     summary: 'Update a reservation',
-    description: 'Updates an existing reservation. Users can only update their own reservations.',
+    description:
+      'Updates an existing reservation. Users can only update their own reservations.',
   })
   @ApiParam({
     name: 'id',
@@ -398,15 +426,26 @@ export class ReservationController {
       },
     },
   })
-  @ApiResponse({ status: 400, description: 'Bad request - Cannot update cancelled reservation or not enough capacity' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Can only update own reservations' })
+  @ApiResponse({
+    status: 400,
+    description:
+      'Bad request - Cannot update cancelled reservation or not enough capacity',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Can only update own reservations',
+  })
   @ApiResponse({ status: 404, description: 'Reservation not found' })
   update(
     @Param('id', ParseIntPipe) id: number,
     @Request() req: AuthenticatedRequest,
     @Body() updateReservationDto: UpdateReservationDto,
   ) {
-    return this.reservationService.update(id, req.user.userId, updateReservationDto);
+    return this.reservationService.update(
+      id,
+      req.user.userId,
+      updateReservationDto,
+    );
   }
 
   @Patch(':id/cancel')
@@ -414,7 +453,8 @@ export class ReservationController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary: 'Cancel a reservation',
-    description: 'Cancels an existing reservation. Users can only cancel their own reservations.',
+    description:
+      'Cancels an existing reservation. Users can only cancel their own reservations.',
   })
   @ApiParam({
     name: 'id',
@@ -437,8 +477,14 @@ export class ReservationController {
       },
     },
   })
-  @ApiResponse({ status: 400, description: 'Bad request - Reservation already cancelled' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Can only cancel own reservations' })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request - Reservation already cancelled',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Can only cancel own reservations',
+  })
   @ApiResponse({ status: 404, description: 'Reservation not found' })
   cancel(
     @Param('id', ParseIntPipe) id: number,
@@ -452,7 +498,8 @@ export class ReservationController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({
     summary: 'Delete a reservation',
-    description: 'Permanently deletes a reservation. Users can only delete their own reservations.',
+    description:
+      'Permanently deletes a reservation. Users can only delete their own reservations.',
   })
   @ApiParam({
     name: 'id',
@@ -460,7 +507,10 @@ export class ReservationController {
     example: 1,
   })
   @ApiResponse({ status: 204, description: 'Reservation deleted successfully' })
-  @ApiResponse({ status: 403, description: 'Forbidden - Can only delete own reservations' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - Can only delete own reservations',
+  })
   @ApiResponse({ status: 404, description: 'Reservation not found' })
   remove(
     @Param('id', ParseIntPipe) id: number,
