@@ -16,10 +16,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -28,31 +28,31 @@ jobs:
     # --- BACKEND ---
     - name: Install Backend Dependencies
       run: |
-        cd backend
+        cd EventRev_backend
         npm ci
 
     - name: Lint Backend
       run: |
-        cd backend
+        cd EventRev_backend
         npm run lint
 
     - name: Build Backend
       run: |
-        cd backend
+        cd EventRev_backend
         npm run build
 
     # --- FRONTEND ---
     - name: Install Frontend Dependencies
       run: |
-        cd frontend
+        cd EventRev_frontend
         npm ci
 
     - name: Lint Frontend
       run: |
-        cd frontend
+        cd EventRev_frontend
         npm run lint
 
     - name: Build Frontend
       run: |
-        cd frontend
+        cd EventRev_frontend
         npm run build
