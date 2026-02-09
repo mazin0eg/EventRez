@@ -52,6 +52,9 @@ export class Event {
   @Column({ nullable: true })
   categoryId: number;
 
+  @Column({ nullable: true })
+  image: string;
+
   @OneToMany(() => Reservation, (reservation) => reservation.event)
   reservations: Reservation[];
 

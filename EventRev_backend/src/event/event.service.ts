@@ -19,6 +19,7 @@ export class EventService {
       location: createEventDto.location,
       organizerId: createEventDto.organizerId,
       categoryId: createEventDto.categoryId,
+      image: createEventDto.image,
       capacity: createEventDto.capacity,
       isPublished: createEventDto.isPublished ?? false,
       startDate: new Date(createEventDto.startDate),

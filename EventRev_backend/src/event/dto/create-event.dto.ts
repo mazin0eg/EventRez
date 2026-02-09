@@ -67,6 +67,10 @@ export class CreateEventDto {
   @IsOptional()
   categoryId?: number;
 
+  @IsString()
+  @IsOptional()
+  image?: string;
+
   @ApiPropertyOptional({
     description: 'Maximum number of attendees for the event',
     example: 100,
